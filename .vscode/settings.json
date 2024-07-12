@@ -1,0 +1,17 @@
+{
+    "editor.hover.enabled": true,
+    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
+    "editor.find.autoFindInSelection": "never",
+    "editor.find.seedSearchStringFromSelection": "always",
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "emmet.useInlineCompletions": false,
+    "editor.suggest.shareSuggestSelections": false,
+    "editor.inlineSuggest.suppressSuggestions": false,
+    "terminal.integrated.suggest.suggestOnTriggerCharacters": false,
+    "terminal.integrated.suggest.quickSuggestions": false,
+    "json.trace.server": "off",
+    "json.schemas": [
+        
+    ]
+}
