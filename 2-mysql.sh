@@ -25,14 +25,14 @@ else
 fi
 
 
-dnf install mysql-selinux.noarch -y &>> $LOGFILE
-VALIDATE $? "Installing mysql-selinux.noarch"
+dnf install mysql-server -y &>> $LOGFILE
+VALIDATE $? "Installing mysql-server"
 
-systemctl enable mysql-selinux.noarch &>> $LOGFILE
-VALIDATE $? "enabling mysql-selinux.noarch"
+systemctl enable mysqld.service &>> $LOGFILE
+VALIDATE $? "enabling mysqld.service"
 
-systemctl start mysql-selinux.noarch &>> $LOGFILE
-VALIDATE $? "starting mysql-selinux.noarch"
+systemctl start mysqld.service &>> $LOGFILE
+VALIDATE $? "starting mysqld.service"
 
 mysql-secure-installation --set-root-pass ExpenseApp@1  &>> $LOGFILE
 VALIDATE $? "Setting up root password"
