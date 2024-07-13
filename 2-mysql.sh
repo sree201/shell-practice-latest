@@ -5,9 +5,9 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPTNAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$TIMESTAMP-$SCRIPTNAME.log
 
-VALDIATE=$(){
+VALIDATE(){
     if [ $1 -ne 0 ]
-    then 
+    then
         echo "$2...FAILURE"
         exit 1
     else
@@ -16,13 +16,14 @@ VALDIATE=$(){
 
 }
 
-if [ $USERID -ne 0 ]
+if [$USERID -ne 0]
 then
-    echo "Please run this script with root access"
+    echo "Please run this with root user access"
     exit 1
 else
-    echo "Your are a super user"
+    echo "your are a super user"
 fi
+
 
 dnf install mysql-selinux.noarch -y &>> $LOGFILE
 VALIDATE $? "Installing mysql-selinux.noarch"
