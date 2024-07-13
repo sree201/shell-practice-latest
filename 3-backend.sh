@@ -29,7 +29,7 @@ fi
 dnf module disable nodejs -y &>>$LOGFILE
 VALIDATE $? "Disabling default nodejs"
 
-systemctl enable noidejs:20 -y &>>$LOGFILE
+dnf enable noidejs:20 -y &>>$LOGFILE
 VALIDATE $? "Enabling nodejs:20 version"
 
 dnf install nodejs -y &>>$LOGFILE
