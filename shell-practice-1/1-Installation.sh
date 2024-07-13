@@ -2,6 +2,9 @@
 #"Shibang is the location of shell interpretter so it will read the commands and execute the commands "
 
 USERID=$(id -u)
+TIMESTAMP=$(date + '%f%H%M%S')
+SCRIPTNAME=$(echo $0 | cut -d "." -f1)
+LOGFILE=/tmp/$TIMESTAMP-$SCRIPTNAME.log
 
 VALIDATE(){
     if [ $1 -ne 0 ]
