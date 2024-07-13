@@ -24,8 +24,8 @@ if [ $USERID -ne 0 ]
         echo "your are a super user"
     fi
 
-#dnf install mysql -y $>>$LOGFILE
-#VALIDATE $? "Installing MySQL"
+dnf install mysql -y $>>$LOGFILE
+VALIDATE $? "Installing MySQL"
 
 dnf install mysql-selinux.noarch -y $>>$LOGFILE
 
