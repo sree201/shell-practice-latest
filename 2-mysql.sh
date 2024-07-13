@@ -36,7 +36,7 @@ VALIDATE $? "starting mysqld.service"
 
 #mysql-secure-installation --set-root-pass ExpenseApp@1  &>>$LOGFILE
 
-mysql -h techitcloud.cloud -uroot -PExpenseApp@1 -e 'show databases;' &>>$LOGFILE
+mysql -h db.daws78s.online -uroot -PExpenseApp@1 -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ExpenseApp@1  &>>$LOGFILE
