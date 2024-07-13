@@ -36,8 +36,13 @@ dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Installing nodejs"
 
 
-useradd expense
-VALDIATE $? "Creating expense user"
+id expense &>>$LOGFILE
+ if [ $? -ne 0 ]
+ then
+    useradd expense &>>$LOGFILE
+ else
+     echo -e "Expense user already created...$Y SKIPPING $N"
+ fi
 
 #mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
