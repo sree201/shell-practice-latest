@@ -26,10 +26,23 @@ else
 fi
 
 
-dnf install mysql-selinux.noarch
-VALIDATE $? "Installing mysql-selinux,noarch"
+dnf install mysql-selinux.noarch &>> $LOGFILE
+VALIDATE $? "Installing mysql-selinux.noarch"
+
+dnf install git -y &>> $LOGFILE
+VALDIATE $? "Installing Git"
 
 
+for i in $0 #Looping all the parameters what you have given "$i"
+do
+    echo "Packages to install: $i"
+    dnf install mysql-selinux.noarch $i -y &>> $LOGFILE
+    if [ $? -eq 0 ]
+    then
+        echo "$i already installed...SKIPPING"
+    else
+        dnf install git $i -y &>> $LOGFILE
+        VALIDATE $? "Installing of $i"
 
 # cat 01-Delete_Archive_logs.sh
 # #!/bin/bash
