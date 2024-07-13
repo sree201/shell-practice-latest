@@ -17,13 +17,13 @@ else
 fi
 
 dnf install mysql-server -y &>> $LOGFILE
-#VALIDATE $? "Installing Mysql Server"
+VALIDATE $? "Installing Mysql Server"
 
 systemctl enable mysqld.service &>> $LOGFILE
-#VALIDATE $? "Enabling Mysql server"
+VALIDATE $? "Enabling Mysql server"
 
 systemctl start mysqld.service &>> $LOGFILE
-#VALIDATE $? "Starting Mysql server"
+VALIDATE $? "Starting Mysql server"
 
 #mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
@@ -32,7 +32,7 @@ mysql -h techitcloud.cloud -uroot -pExpenseApp@1 -e 'show databases;' &>> $LOGFI
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ExpenseApp@1 &>> $LOGFILE
-    #VALIDATE $? "MySQL root password setup"
+    VALIDATE $? "MySQL root password setup"
 else
     echo "MySQL root password is already setup...$Y SKIPPING $N"
 fi
