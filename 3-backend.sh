@@ -26,13 +26,13 @@ else
     echo "you are a super user."
 fi
 
-dnf module disable nodejs -y &>> $LOGFILE
-VALIDATE $? "Disabling Mysql Server"
+dnf module disable nodejs -y &>>$LOGFILE
+VALIDATE $? "Disabling default nodejs"
 
-dnf module enable noidejs:20 -y &>> $LOGFILE
+dnf module enable noidejs:20 -y &>>$LOGFILE
 VALIDATE $? "Enabling nodejs:20 version"
 
-dnf install nodejs -y &>> $LOGFILE
+dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Installing nodejs"
 
 useradd expense
@@ -41,10 +41,10 @@ VALDIATE $? "Creating expense user"
 #mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
 
-mysql -h techitcloud.cloud -uroot -pExpenseApp@1 -e 'show databases;' &>> $LOGFILE
+mysql -h techitcloud.cloud -uroot -pExpenseApp@1 -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
-    mysql_secure_installation --set-root-pass ExpenseApp@1 &>> $LOGFILE
+    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
     VALIDATE $? "MySQL root password setup"
 else
     echo "MySQL root password is already setup...$Y SKIPPING $N"
