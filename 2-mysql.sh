@@ -25,14 +25,14 @@ else
 fi
 
 
-dnf install mysql-server -y &>> $LOGFILE
+dnf install mysql-server -y &>>$LOGFILE
 VALIDATE $? "Installing mysql-server"
 
-systemctl enable mysqld.service &>> $LOGFILE
+systemctl enable mysqld.service &>>$LOGFILE
 VALIDATE $? "enabling mysqld.service"
 
-systemctl start mysqld.service &>> $LOGFILE
+systemctl start mysqld.service &>>$LOGFILE
 VALIDATE $? "starting mysqld.service"
 
-mysql-secure-installation --set-root-pass ExpenseApp@1  &>> $LOGFILE
+mysql-secure-installation --set-root-pass ExpenseApp@1  &>>$LOGFILE
 VALIDATE $? "Setting up root password"
