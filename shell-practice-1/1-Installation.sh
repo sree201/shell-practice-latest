@@ -24,13 +24,12 @@ if [ $USERID -ne 0 ]
         echo "your are a super user"
     fi
 
-# dnf install mysql -y $>>$LOGFILE
-# VALIDATE $? "Installing MySQL"
 
-dnf install mysql-selinux.noarch -y $>>$LOGFILE
+dnf install mysql-selinux.noarch -y &>>$LOGFILE
+VALIDATE $? "installing mysql-selinux.noarch"
 
-dnf install git -y $>>$LOGFILE
-VALIDATE $? "Installing Git"
+dnf install git -y &>>$LOGFILE
+VALIDATE $? "installing Git"
 
 echo "is script processing"
 
