@@ -16,7 +16,7 @@ VALIDATE(){
 
 }
 
-if [$USERID -ne 0]
+if [ $USERID -ne 0 ]
 then
     echo "Please run this with root user access"
     exit 1
@@ -28,11 +28,11 @@ fi
 dnf install mysql-selinux.noarch -y &>> $LOGFILE
 VALIDATE $? "Installing mysql-selinux.noarch"
 
-systemctl enable mysqld &>> $LOGFILE
-VALIDATE $? "enabling mysqld"
+systemctl enable mysql-selinux.noarch &>> $LOGFILE
+VALIDATE $? "enabling mysql-selinux.noarch"
 
-systemctl start mysqld &>> $LOGFILE
-VALIDATE $? "starting mysqld"
+systemctl start mysql-selinux.noarch &>> $LOGFILE
+VALIDATE $? "starting mysql-selinux.noarch"
 
 mysql-secure-installation --set-root-pass ExpenseApp@1  &>> $LOGFILE
 VALIDATE $? "Setting up root password"
