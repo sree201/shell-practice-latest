@@ -2,36 +2,30 @@
 #"Shibang is the location of shell interpretter so it will read the commands and execute the commands "
 
 USERID=$(id -u)
-TIMESTAMP=$(date +%F-%H-%M-%S)
-SCRIPTNAME=$(echo $0 | cut -d "." -f1)
-LOGFILE=/tmp/$SCRIPTNAME-$TIMESTAMP.log
 
 VALIDATE(){
     if [ $1 -ne 0 ]
-    then 
-        echo $2..."FAILURE"
+    then
+        echo "$2...FAILURE"
         exit 1
     else
-        echo $2..."SUCCESS"
+        echo "$2...SUCCESS"
     fi
+
 }
 
-if [ $USERID -ne 0 ]
-    then
-        echo "Please run this script with root access."
-        exit 1 #manually exit if error comes
-    else
-        echo "your are a super user"
-    fi
+if [$USERID -ne 0]
+then
+    echo "Please run this with root user access"
+    exit 1
+else
+    echo "your are a super user"
+fi
 
 
-dnf install mysql-selinux.noarch -y &>>$LOGFILE
-VALIDATE $? "installing mysql-selinux.noarch"
+dnf install mysql-selinux.noarch
+VALIDATE $? "Installing mysql-selinux,noarch"
 
-dnf install git -y &>>$LOGFILE
-VALIDATE $? "installing Git"
-
-echo "is script processing"
 
 
 # cat 01-Delete_Archive_logs.sh
