@@ -7,6 +7,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[34m"
 
+# Validation function
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -18,6 +19,7 @@ VALIDATE(){
 
 }
 
+# Check if super user or not 
 if [ $USERID -ne 0 ]
 then
     echo "Please run this script with root access."
@@ -35,14 +37,14 @@ VALIDATE $? "Enabling nodejs:20 version"
 dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Installing nodejs"
 
-
-id expense &>>$LOGFILE
- if [ $? -ne 0 ]
- then
-    useradd expense &>>$LOGFILE
- else
-     echo -e "Expense user already created...$Y SKIPPING $N"
- fi
+id expense
+if [$? -ne 0 ]
+then
+    username expense &>>$LOGFILE
+    VALIDATE $? "Creating expense user"
+else
+    echo -e "Expense user already created...$Y SKIPPING $N"
+fi
 
 #mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
