@@ -37,7 +37,7 @@ VALIDATE $? "Enabling nodejs:20 version"
 dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Installing nodejs"
 
-id expense
+id expense -y &>>$LOGFILE
 if [$? -ne 0 ]
 then
     username expense &>>$LOGFILE
