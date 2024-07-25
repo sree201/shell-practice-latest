@@ -30,7 +30,7 @@ dnf install mysql-selinux.noarch &>> $LOGFILE
 VALIDATE $? "Installing mysql-selinux.noarch"
 
 dnf install git -y &>> $LOGFILE
-VALDIATE $? "Installing Git"
+VALIDATE $? "Installing Git"
 
 
 for i in $0 #Looping all the parameters what you have given "$i"
