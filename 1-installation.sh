@@ -67,4 +67,4 @@ do
 # archive_name="log_archive_$(date +'%Y%m%d').tar.gz"
 # find "$log_directory" -type f -name ".2023" -mtime +"$threshold_days" -exec tar -czvf "$archive_name" {} +
 # echo "Old log files $G archived to $archive_name."
-#
+# }
