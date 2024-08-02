@@ -59,6 +59,7 @@ rm -rf /app/*
 unzip /tmp/backend.zip &>>$LOGFILE
 
 npm install 
+npm install -g npm@10.8.2
 
 # check your repo and path
 cp /home/ec2-user/shell-practice-latest/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
