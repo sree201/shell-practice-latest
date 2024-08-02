@@ -1,3 +1,5 @@
+#!/bin/bash
+
 USERID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
@@ -46,6 +48,33 @@ then
 else
     echo -e "Expense user already created...$Y SKIPPING $N"
 fi
+
+
+mkdir -p /app
+
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
+
+cd /app
+rm -rf /app/*
+unzip /tmp/backend.zip &>>$LOGFILE
+
+npm install 
+
+# check your repo and path
+cp /home/ec2-user/shell-practice-latest/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+
+systemctl daemon-reload &>>$LOGFILE
+
+systemctl start backend &>>$LOGFILE
+
+systemctl enable backend &>>$LOGFILE
+
+dnf install mysql -y &>>$LOGFILE
+
+# mysql -h techitcloud.cloud -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+# VALIDATE $? "Schema loading"
+
+systemctl restart backend &>>$LOGFILE
 
 #mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
