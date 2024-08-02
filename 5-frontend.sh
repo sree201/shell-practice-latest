@@ -31,10 +31,13 @@ else
 fi
 
 dnf install nginx -y &>>$LOGFILE
+VALIDATE $? "Install nginx"
 
 systemctl enable nginx &>>$LOGFILE
+VALIDATE $? "Enable nginx"
 
 systemctl start nginx &>>$LOGFILE
+VALIDATE $? "Start nginx"
 
 rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 
@@ -47,3 +50,4 @@ unzip /tmp/frontend.zip &>>$LOGFILE
 cp /home/ec2-user/shell-practice-latest/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
 
 systemctl restart nginx &>>$LOGFILE
+VALIDATE $? "Restart nginx"
