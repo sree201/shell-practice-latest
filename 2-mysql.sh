@@ -43,7 +43,7 @@ VALIDATE $? "Starting Mysql server"
 #mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
 
-mysql -h techitcloud.online -uroot -p${mysql_root_password} -e 'show databases;' &>> $LOGFILE
+mysql -h backend.techitcloud.online -uroot -p${mysql_root_password} -e 'show databases;' &>> $LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ${mysql_root_password} &>> $LOGFILE
