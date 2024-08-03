@@ -46,27 +46,27 @@ fi
 
 mkdir -p /app &>>$LOGFILE
 
-curl -o /tmp/3-backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 
 cd /app
 rm -rf /app/*
-unzip /tmp/3-backend.zip &>>$LOGFILE
+unzip /tmp/backend.zip &>>$LOGFILE
 
 npm install &>>$LOGFILE
 npm install -g npm@10.8.2 
 
 #check your repo and path
-cp /home/ec2-user/shell-practice-latest/3-backend.service /etc/systemd/system/3-backend.service &>>$LOGFILE
+cp /home/ec2-user/shell-practice-latest/4-backend.service /etc/systemd/system/4-backend.service &>>$LOGFILE
 
 systemctl daemon-reload &>>$LOGFILE
 
-systemctl start 3-backend &>>$LOGFILE
+systemctl start backend &>>$LOGFILE
 
-systemctl enable 3-backend &>>$LOGFILE
+systemctl enable backend &>>$LOGFILE
 
 dnf install mysql -y &>>$LOGFILE
 
 # mysql -h techitcloud.cloud -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 # VALIDATE $? "Schema loading"
 
-systemctl restart 3-backend &>>$LOGFILE
+systemctl restart backend &>>$LOGFILE
