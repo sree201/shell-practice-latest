@@ -80,7 +80,7 @@ systemctl restart backend &>>$LOGFILE
 #mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
 
-mysql -h techitcloud.online -uroot -pExpenseApp@1 -e 'show databases;' &>>$LOGFILE
+mysql -h 172.31.88.122 -uroot -pExpenseApp@1 -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
