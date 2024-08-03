@@ -62,7 +62,7 @@ npm install
 npm install -g npm@10.8.2
 
 # check your repo and path
-cp /home/ec2-user/shell-practice-latest/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+cp /home/ec2-user/shell-practice-latest/4-backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 
 systemctl daemon-reload &>>$LOGFILE
 
