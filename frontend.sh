@@ -4,23 +4,23 @@
 source ./common.sh
 check_root
 
-dnf install nginx -y &>>$LOGFILE
+dnf install nginx -y &>> $LOGFILE
 VALIDATE $? "Installing nginx"
 
-systemctl enable nginx &>>$LOGFILE
+systemctl enable nginx &>> $LOGFILE
 VALIDATE $? "Enabling nginx"
 
-systemctl start nginx &>>$LOGFILE
+systemctl start nginx &>> $LOGFILE
 VALIDATE $? "Starting nginx"
 
-rm -rf /usr/share/nginx/html/* &>>$LOGFILE
+rm -rf /usr/share/nginx/html/* &>> $LOGFILE
 VALIDATE $? "Removing existing content"
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>> $LOGFILE
 VALIDATE $? "Downloading frontend code"
 
-cd /usr/share/nginx/html &>>$LOGFILE
-unzip /tmp/frontend.zip &>>$LOGFILE
+cd /usr/share/nginx/html &>> $LOGFILE
+unzip /tmp/frontend.zip &>> $LOGFILE
 VALIDATE $? "Extracting frontend code"
 
 #check your repo and path
