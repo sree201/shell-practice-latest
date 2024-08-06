@@ -10,8 +10,8 @@ VALIDATE $? "Installing nginx"
 systemctl enable nginx &>> $LOGFILE
 VALIDATE $? "Enabling nginx"
 
-#systemctl start nginx &>> $LOGFILE
-#VALIDATE $? "Starting nginx"
+systemctl start nginx &>> $LOGFILE
+VALIDATE $? "Starting nginx"
 
 rm -rf /usr/share/nginx/html/* &>> $LOGFILE
 VALIDATE $? "Removing existing content"
@@ -27,5 +27,5 @@ VALIDATE $? "Extracting frontend code"
 cp /home/ec2-user/shell-practice-latest/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
 VALIDATE $? "Copied expense conf"
 
-#systemctl restart nginx &>> $LOGFILE
-#VALIDATE $? "Restarting nginx"
+systemctl restart nginx &>> $LOGFILE
+VALIDATE $? "Restarting nginx"
