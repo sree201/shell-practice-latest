@@ -23,14 +23,6 @@ do
     rm -rf $line
 done <<< $FILES
 
-Function to archive old log file
-archive_old_logs() {
-    archive_name="log_archive_$(date +'%Y%m%d').tar.gz"
-    find "$SOURCE_DIRECTORY" -type f -name ".2024" -mtime +14 -exec tar -czvf "$archive_name" {} +
-    echo "Old log files $G archived to $archive_name."
-}
-
-
 # #!/bin/bash
 
 # R="\e[31m"
