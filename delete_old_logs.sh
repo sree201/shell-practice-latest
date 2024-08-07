@@ -1,49 +1,49 @@
 #!/bin/bash
 
-SOURCE_DIRECTORY=/tmp/app-log
+# SOURCE_DIRECTORY=/tmp/app-log
 
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
+# R="\e[31m"
+# G="\e[32m"
+# Y="\e[33m"
+# N="\e[0m"
 
-if [ -d $SOURCE_DIRECTORY ]
-then
-    echo -e "$G Source directory exists $N"
-else
-    echo -e "$R Please make sure $SOURCE_DIRECTORY exists $N"
-    exit 1
-fi
+# if [ -d $SOURCE_DIRECTORY ]
+# then
+#     echo -e "$G Source directory exists $N"
+# else
+#     echo -e "$R Please make sure $SOURCE_DIRECTORY exists $N"
+#     exit 1
+# fi
 
-FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14 )
+# FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14 )
 
-while IFS= read -r line
-do
-    echo "Deleting file: $line"
-    rm -rf $line
-done <<< $FILES
+# while IFS= read -r line
+# do
+#     echo "Deleting file: $line"
+#     rm -rf $line
+# done <<< $FILES
 
 
 # #!/bin/bash
 
-# R="\e[31m"
-# G="\e[32m"
+R="\e[31m"
+G="\e[32m"
 
-# Set the directory path where log files are located
-# log_directory="/var/log/"
+Set the directory path where log files are located
+log_directory="/var/log/"
 
-# Set the threshold age for log files
-# threshold_days=14
+Set the threshold age for log files
+threshold_days=14
 
-# delete old log files
-# delete_old_logs() {
-# find "$log_directory" -type f -name ".2023" -mtime +"$threshold_days" -exec rm {} ;
-# echo "Old log files $R deleted."
-# }
+delete old log files
+delete_old_logs() {
+find "$log_directory" -type f -name ".2023" -mtime +"$threshold_days" -exec rm {} ;
+echo "Old log files $R deleted."
+}
 
-# Function to archive old log files
-# archive_old_logs() {
-# archive_name="log_archive_$(date +'%Y%m%d').tar.gz"
-# find "$log_directory" -type f -name ".2023" -mtime +"$threshold_days" -exec tar -czvf "$archive_name" {} +
-# echo "Old log files $G archived to $archive_name."
-# }
+Function to archive old log files
+archive_old_logs() {
+archive_name="log_archive_$(date +'%Y%m%d').tar.gz"
+find "$log_directory" -type f -name ".2023" -mtime +"$threshold_days" -exec tar -czvf "$archive_name" {} +
+echo "Old log files $G archived to $archive_name."
+}
