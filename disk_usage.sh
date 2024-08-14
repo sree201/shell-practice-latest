@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DISK_USAGE=$(df -hT | grep xfs)
-DISK_TRESHOLD=75%
+DISK_TRESHOLD=6
 
 while IFS= read -r line
 do
