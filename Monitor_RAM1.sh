@@ -48,8 +48,6 @@ do
     if [ $USAGE >= $THRESHOLD ]
     then
         MESSAGE+="$FOLDER is more than $THRESHOLD,  current usage: $USAGE"
-done
-
 
 echo -e "MESSAGE: $MESSAGE"
 
