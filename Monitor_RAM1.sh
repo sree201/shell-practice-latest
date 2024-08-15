@@ -48,13 +48,9 @@ do
     if [ $USAGE >= $THRESHOLD ]
     then
         MESSAGE+="$FOLDER is more than $THRESHOLD,  current usage: $USAGE"
+    fi
+done
 
 echo -e "MESSAGE: $MESSAGE"
 
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
-
-# Send the email
-    send_email
- else
-     echo "Available RAM is sufficient."
-fi
