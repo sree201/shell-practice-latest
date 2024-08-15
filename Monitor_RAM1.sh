@@ -62,5 +62,7 @@ echo "Please take appropriate action to free up memory or increase system resour
  
 done <<< "$AVAILABLE_RAM"
 
+send_email() {
 echo -e "MESSAGE: $MESSAGE"
-echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
+echo "$MESSAGE" | mail -s "$EMAIL_SUBJECT" "Available ram usage alert" koyisrinath@gmail.com < "$EMAIL_BODY"
+}
