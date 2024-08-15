@@ -72,8 +72,4 @@ if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]; then
     echo "Current available RAM: ${AVAILABLE_RAM}MB" >> "$EMAIL_BODY"
     echo "Please take appropriate action to free up memory or increase system resources." >> "$EMAIL_BODY"
     
-    # Send the email
-    send_email
-else
-    echo "Available RAM is sufficient."
 fi
