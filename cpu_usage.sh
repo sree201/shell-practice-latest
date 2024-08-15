@@ -1,8 +1,11 @@
 #!/bin/bash
 
 CPU_THRESHOLD=80        # CPU usage threshold in percent
+EMAIL_TO="koyisrinath@gmail.com"
+EMAIL_SUBJECT="Alert: System Resource Usage"
+EMAIL_BODY="/tmp/resource_alert_body.txt"
 
-# CPU Usage
+# Check CPU Usage
 cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1)
 
 if [ "$cpu_usage" -gt "$threshold" ]; then
@@ -29,7 +32,7 @@ if [ "$ALERT_FLAG" -eq 2 ]; then
     echo "Creating alert email content."
 
 
-echo "Current CPU Load: ${CPU_USAGE}%"
+echo "Current CPU Load: ${CPU_USAGE}%" >> "$EMAIL_BODY"
 
 # Send the email
     send_email
