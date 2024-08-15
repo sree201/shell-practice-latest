@@ -48,16 +48,14 @@ do
     then
         MESSAGE+="$USAGE Usage of RAM is more than $THRESHOLD,  current usage: $AVAILABLE_RAM"
 
-# Create email body content
-echo "Warning: Your system's available RAM has fallen below the threshold of $THRESHOLD MB."
-echo "Current available RAM: ${AVAILABLE_RAM}MB"
-echo "Please take appropriate action to free up memory or increase system resources."
-
     fi
  
 done <<< "$AVAILABLE_RAM"
 
-send_email() {
 echo -e "MESSAGE: $MESSAGE"
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
-}
+
+# Create email body content
+echo "Warning: Your system's available RAM has fallen below the threshold of $THRESHOLD MB."
+echo "Current available RAM: ${AVAILABLE_RAM}MB"
+echo "Please take appropriate action to free up memory or increase system resources."
