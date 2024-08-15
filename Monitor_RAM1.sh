@@ -38,6 +38,7 @@
 # Configuration
 THRESHOLD=1024           # Threshold in MB (e.g., 1024 MB = 1 GB)
 AVAILABLE_RAM=$(free -m | awk '/^Mem:/{print $7}')
+EMAIL_SUBJECT="Alert: Low RAM Memory"
 EMAIL_BODY="/tmp/ram_alert_body.txt"
 MESSAGE=""
 
@@ -47,15 +48,17 @@ do
     USAGE=$(echo $line | awk '/^Mem:/{print $7}')
     if [ $USAGE >= $THRESHOLD ]
     then
-        MESSAGE+="$USAGE Usage of RAM is more than $THRESHOLD,  current usage: $AVAILABLE_RAM" >> "$EMAIL_BODY"
+        echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
+        echo "Warning: Your system's available RAM has fallen below the threshold of $THRESHOLD MB." >> "$EMAIL_BODY"
+        MESSAGE+="$USAGE Usage of RAM is more than $THRESHOLD,  current usage: $AVAILABLE_RAM"
 
     fi
  
 done <<< "$AVAILABLE_RAM"
 
 echo -e "MESSAGE: $MESSAGE"
-echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com < "$EMAIL_BODY"
+echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
 
 # Create email body content
-echo "Current available RAM: ${AVAILABLE_RAM}MB" >> "$EMAIL_BODY"
+echo "Current available RAM: ${AVAILABLE_RAM}MB"
 echo "Please take appropriate action to free up memory or increase system resources."
