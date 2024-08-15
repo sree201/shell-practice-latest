@@ -54,15 +54,15 @@ do
  
 done <<< "$AVAILABLE_RAM"
 
-send_email(){
+# Compare available RAM with the threshold
+ if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]; then
+     echo "Available RAM is below threshold. Sending alert email."
+
 echo -e "MESSAGE: $MESSAGE"
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
-}
 
 # Create email body content
-echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
-echo "" >> "$EMAIL_BODY"
-echo "Warning: Your system's available RAM has fallen below the threshold of $THRESHOLD MB."
-echo "" >> "$EMAIL_BODY"
 echo "Current available RAM: ${AVAILABLE_RAM}MB"
 echo "Please take appropriate action to free up memory or increase system resources."
+
+fi
