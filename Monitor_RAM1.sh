@@ -56,7 +56,7 @@ done <<< "$AVAILABLE_RAM"
 
 send_email(){
 echo -e "MESSAGE: $MESSAGE"
-echo "$MESSAGE" | mail -s "$EMAIL_SUBJECT" "Available ram usage alert" koyisrinath@gmail.com
+echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
 }
 
 # Create email body content
