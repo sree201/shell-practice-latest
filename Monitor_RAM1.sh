@@ -47,7 +47,7 @@ do
     FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
     if [ $USAGE >= $THRESHOLD ]
     then
-        MESSAGE+="$FOLDER is more than $TRESHOLD,  current usage: $USAGE"
+        MESSAGE+="$FOLDER is more than $THRESHOLD,  current usage: $USAGE"
 
     if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]
     then
