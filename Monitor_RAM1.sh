@@ -48,6 +48,7 @@ do
     USAGE=$(echo $line | awk '/^Mem:/{print $7}')
     if [ $USAGE >= $THRESHOLD ]
     then
+        echo "Subject: $EMAIL_SUBJECT"
         MESSAGE+="$USAGE Usage of RAM is more than $THRESHOLD,  current usage: $AVAILABLE_RAM"
 
     fi
