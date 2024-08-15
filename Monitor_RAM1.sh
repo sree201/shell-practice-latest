@@ -63,5 +63,3 @@ echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
  else
      echo "Available RAM is sufficient."
  fi
-
- done
