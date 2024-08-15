@@ -49,7 +49,9 @@ do
     if [ $USAGE >= $THRESHOLD ]
     then
         echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
+        echo "" >> "$EMAIL_BODY"
         echo "Warning: Your system's available RAM has fallen below the threshold of $THRESHOLD MB." >> "$EMAIL_BODY"
+        echo "" >> "$EMAIL_BODY"
         MESSAGE+="$USAGE Usage of RAM is more than $THRESHOLD,  current usage: $AVAILABLE_RAM"
 
     fi
