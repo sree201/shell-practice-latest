@@ -45,13 +45,22 @@ while IFS= read -r line
 do
     USAGE=$(echo $line | awk '/^Mem:/{print $7}' | cut -d "GB" -f1)
     FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
-    if [ $USAGE -ge $THRESHOLD ]
+    if [ $USAGE >= $THRESHOLD ]
     then
         MESSAGE+="$FOLDER is more than $TRESHOLD,  current usage: $USAGE"
-    fi
+
+    if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]
+    then
+    echo "Available RAM is below threshold. Sending alert email."
 
 done <<< "$AVAILABLE_RAM"
 
 echo -e "MESSAGE: $MESSAGE"
 
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
+
+# Send the email
+    send_email
+ else
+     echo "Available RAM is sufficient."
+ fi
