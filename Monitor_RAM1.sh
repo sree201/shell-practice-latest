@@ -38,7 +38,6 @@
 # Configuration
 THRESHOLD=1024           # Threshold in MB (e.g., 1024 MB = 1 GB)
 AVAILABLE_RAM=$(free -m | awk '/^Mem:/{print $7}')
-EMAIL_SUBJECT="Alert: Low RAM Memory"
 MESSAGE=""
 
 
