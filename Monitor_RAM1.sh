@@ -48,7 +48,7 @@ do
         MESSAGE+="$AVAILABLE_RAM is more than $TRESHOLD,  current usage: $USAGE"
     fi
 
-done <<< "$AVAILABLE_RAM"
+done <<< "$USAGE"
 
 echo -e "MESSAGE: $MESSAGE"
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
