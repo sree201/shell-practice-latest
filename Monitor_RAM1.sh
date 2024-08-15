@@ -53,8 +53,8 @@ done <<< "$AVAILABLE_RAM"
 
 echo -e "MESSAGE: $MESSAGE"
 
-send_enmail(){
-    else
+# Function to send email
+send_enmail() {
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
 }
 
