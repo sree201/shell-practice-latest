@@ -43,10 +43,9 @@ MESSAGE=""
 while IFS= read -r line
 do
     USAGE=$(echo $line | awk '/^Mem:/{print $7}')
-    FOLDER=$(echo $line | awk '/^Mem:/{print $7}')
     if [ $USAGE >= $THRESHOLD ]
     then
-        MESSAGE+="$FOLDER is more than $TRESHOLD,  current usage: $USAGE"
+        MESSAGE+="$USAGE is more than $TRESHOLD,  current usage: $AVAILABLE_RAM"
     fi
 
 done <<< "$AVAILABLE_RAM"
