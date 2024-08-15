@@ -23,7 +23,7 @@ fi
 ALERT_FLAG=0
 
 # Check CPU usage
-if [ "$(echo "$CPU_USAGE >= $CPU_THRESHOLD" | bc)" -eq 1 ]; then
+if [ "$(echo "$CPU_USAGE -gt $CPU_THRESHOLD" | bc)" -eq 2 ]; then
     echo "CPU USAGE is above threshold."
     ALERT_FLAG=1
 fi
