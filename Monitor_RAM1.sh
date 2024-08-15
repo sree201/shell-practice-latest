@@ -53,7 +53,6 @@ do
     then
     echo "Available RAM is below threshold. Sending alert email."
 
-done
 
 echo -e "MESSAGE: $MESSAGE"
 
@@ -64,3 +63,5 @@ echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
  else
      echo "Available RAM is sufficient."
  fi
+
+ done
