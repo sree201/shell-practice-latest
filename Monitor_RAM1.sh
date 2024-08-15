@@ -61,18 +61,21 @@
 
 #!/bin/bash 
 subject="Memory Alert"
-from="koyisrinath@gmail.com"
+file=/tmp/memeorydata.txt
+MESSAGE=""
 
 free=$(free -mt | grep Total | awk '{print $4}')
 
 if [[ "$free" -le 100  ]]; then
 ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5' | head >/tmp/memeorydata.txt
 
-file=/tmp/memeorydata.txt
-
 echo -e "Warning, server memory is running low!\n\n Free memory: $free MB"
 
-mailx -a "$file" -s "$subject" -r "$from"
+mailx -a "$subject"
+
 
 fi
 exit 0
+
+echo -e "MESSAGE: $MESSAGE"
+echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
