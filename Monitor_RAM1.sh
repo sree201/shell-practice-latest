@@ -57,4 +57,4 @@ done <<< "$AVAILABLE_RAM"
 echo -e "MESSAGE: $MESSAGE"
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
 echo -e "Warning, server memory is running low!\n\n
-Free memory: ${free}MB"
+Free memory: $free MB"
