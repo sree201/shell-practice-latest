@@ -66,13 +66,11 @@ from="koyisrinath@gmail.com"
 free=$(free -mt | grep Total | awk '{print $4}')
 
 if [[ "$free" -le 100  ]]; then
-ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5'
-    | head >/tmp/memeorydata.txt
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5' | head >/tmp/memeorydata.txt
 
 file=/tmp/memeorydata.txt
 
-echo -e "Warning, server memory is running low!\n\n
-    Free memory: $free MB" |
+echo -e "Warning, server memory is running low!\n\n Free memory: $free MB"
 
 mailx -a "$file" -s "$subject" -r "$from"
 
