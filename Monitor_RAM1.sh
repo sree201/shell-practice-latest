@@ -42,14 +42,15 @@ AVAILABLE_RAM=$(free -m | awk -F " " '{print $7F}')
 MESSAGE=""
 
 while IFS= read -r line
-do
-    USAGE=$(echo $line | awk '/^Mem:/{print $7}')
+
+    USAGE=$(echo $line | awk '/^Mem:/{print $7}' | cut -d "GB" -f1)
     FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
-    if [ $USAGE >= $THRESHOLD ]
+    if [ $USAGE -ge $THRESHOLD ]
     then
-        MESSAGE+="$FOLDER is more than $THRESHOLD,  current usage: $USAGE"
+        MESSAGE+="$FOLDER is more than $TRESHOLD,  current usage: $USAGE"
     fi
-done
+
+done <<< "$AVAILABLE_RAM"
 
 echo -e "MESSAGE: $MESSAGE"
 
