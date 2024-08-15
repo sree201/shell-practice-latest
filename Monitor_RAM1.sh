@@ -48,6 +48,7 @@ do
     FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
     if [ $USAGE >= $THRESHOLD ]
     then
+        ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5'
         MESSAGE+="$FOLDER Usage of RAM is more than $THRESHOLD,  current usage: $USAGE"
 
     fi
@@ -59,7 +60,7 @@ echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
 echo -e "Warning, server memory is running low!\n\n
 Free memory: $free MB"
 
-if [[ "$free" -le 100  ]]
-then
-    ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5'
-fi
+# if [[ "$free" -le 100  ]]
+# then
+#     ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5'
+# fi
