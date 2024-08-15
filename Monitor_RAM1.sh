@@ -41,7 +41,7 @@ THRESHOLD=1024           # Threshold in MB (e.g., 1024 MB = 1 GB)
 AVAILABLE_RAM=$(free -m | awk -F " " '{print $7F}')
 MESSAGE=""
 
-while IFS=read -r line
+while IFS= read -r line
 do
     USAGE=$(echo $line | awk '/^Mem:/{print $7}' | cut -d "GB" -f1)
     FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
