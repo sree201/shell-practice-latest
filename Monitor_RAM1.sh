@@ -48,16 +48,11 @@ do
     USAGE=$(echo $line | awk '/^Mem:/{print $7}')
     if [ $USAGE >= $THRESHOLD ]
     then
-        echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
         MESSAGE+="$USAGE Usage of RAM is more than $THRESHOLD,  current usage: $AVAILABLE_RAM"
 
     fi
  
 done <<< "$AVAILABLE_RAM"
-
-# Compare available RAM with the threshold
- if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]; then
-     echo "Available RAM is below threshold. Sending alert email."
 
 echo -e "MESSAGE: $MESSAGE"
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
@@ -65,5 +60,3 @@ echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
 # Create email body content
 echo "Current available RAM: ${AVAILABLE_RAM}MB"
 echo "Please take appropriate action to free up memory or increase system resources."
-
-fi
