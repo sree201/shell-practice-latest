@@ -42,7 +42,7 @@ MESSAGE=""
 
 while IFS= read -r line
 do
-    USAGE=$(echo $line | awk '/^Mem:/{print $7}' | cut -d "GB" -f1)
+    USAGE=$(echo $line | awk '/^Mem:/{print $7}')
     FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
     if [ $USAGE >= $THRESHOLD ]
     then
