@@ -49,7 +49,6 @@ do
         MESSAGE+="$USAGE Usage of RAM is more than $THRESHOLD,  current usage: $AVAILABLE_RAM"
 
 # Create email body content
-echo "Subject: $EMAIL_SUBJECT"
 echo "Warning: Your system's available RAM has fallen below the threshold of $THRESHOLD MB."
 echo "Current available RAM: ${AVAILABLE_RAM}MB"
 echo "Please take appropriate action to free up memory or increase system resources."
