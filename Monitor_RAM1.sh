@@ -5,21 +5,6 @@ THRESHOLD=1024           # Threshold in MB (e.g., 1024 MB = 1 GB)
 EMAIL_TO="koyisrinath@gmail.com"
 EMAIL_SUBJECT="Alert: Low RAM Memory"
 EMAIL_BODY="/tmp/ram_alert_body.txt"
-cpu_usage="%"
-
-# CPU Usage
-cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1)
-
-if [ "$cpu_usage" -gt "$threshold" ]; then
-
-echo "High CPU usage detected: $cpu_usage%"
-
-fi
-
-# Function to send email
-send_email() {
-    echo "Sending alert email to $cpu_usage"
-}
 
 # Function to send email
 send_email() {
