@@ -33,3 +33,26 @@ if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]; then
 else
     echo "Available RAM is sufficient."
 fi
+
+###########################################################################################
+
+#!/bin/bash 
+subject="Memory Alert"
+from="admin@thelinuxterminal.com"
+to="user1@gmail.com"
+
+free=$(free -mt | grep Total | awk '{print $4}')
+
+if [[ "$free" -le 100  ]]; then
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5'
+    | head >/tmp/memeorydata.txt
+
+file=/tmp/memeorydata.txt
+
+echo -e "Warning, server memory is running low!\n\n
+    Free memory: $free MB" |
+
+mailx -a "$file" -s "$subject" -r "$from" -c "$to"
+
+fi
+exit 0
