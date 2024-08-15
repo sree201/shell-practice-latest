@@ -63,13 +63,5 @@ echo "Please take appropriate action to free up memory or increase system resour
 
 if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]; then
     echo "Available RAM is below threshold. Sending alert email."
-
-    # Create email body content
-    echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
-    echo "" >> "$EMAIL_BODY"
-    echo "Warning: Your system's available RAM has fallen below the threshold of $THRESHOLD MB." >> "$EMAIL_BODY"
-    echo "" >> "$EMAIL_BODY"
-    echo "Current available RAM: ${AVAILABLE_RAM}MB" >> "$EMAIL_BODY"
-    echo "Please take appropriate action to free up memory or increase system resources." >> "$EMAIL_BODY"
     
 fi
