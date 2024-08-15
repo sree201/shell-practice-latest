@@ -52,16 +52,7 @@ do
 done <<< "$AVAILABLE_RAM"
 
 echo -e "MESSAGE: $MESSAGE"
-
-# Function to send email
-send_enmail() {
 echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
-}
-
-# Compare available RAM with the threshold
-if [ "$AVAILABLE_RAM" -lt "$THRESHOLD" ]; then
-     echo "Available RAM is below threshold. Sending alert email."
-fi
 
 # Create email body content
 echo "Current available RAM: ${AVAILABLE_RAM}MB"
