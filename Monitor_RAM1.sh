@@ -45,7 +45,7 @@ do
     USAGE=$(echo $line | awk '/^Mem:/{print $7}')
     if [ $USAGE >= $THRESHOLD ]
     then
-        MESSAGE+="$AVAILABLE_RAM is more than $USAGE,  current usage: $USAGE"
+        MESSAGE+="$USAGE more than $THRESHOLD,  current usage: $AVAILABLE_RAM"
     fi
  
 done <<< "$AVAILABLE_RAM"
