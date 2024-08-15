@@ -53,7 +53,7 @@ do
     then
     echo "Available RAM is below threshold. Sending alert email."
 
-done <<< $AVAILABLE_RAM
+done
 
 echo -e "MESSAGE: $MESSAGE"
 
