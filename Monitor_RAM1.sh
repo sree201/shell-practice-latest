@@ -36,25 +36,45 @@
 
 
 # Configuration
-THRESHOLD=1024           # Threshold in MB (e.g., 1024 MB = 1 GB)
-AVAILABLE_RAM=$(free -mt | grep Total)
-FILE=/tmp/memeorydata.txt
-MESSAGE=""
+# THRESHOLD=1024           # Threshold in MB (e.g., 1024 MB = 1 GB)
+# AVAILABLE_RAM=$(free -mt | grep Total)
+# MESSAGE=""
 
 
-while IFS= read -r line
-do
-    USAGE=$(echo $line | grep Total | awk 'NR<=5' | head >/tmp/memeorydata.txt)
-    FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
-    if [ $USAGE >= $THRESHOLD ]
-    then
-        MESSAGE+="$FOLDER Usage of RAM is more than $THRESHOLD,  current usage: $USAGE"
+# while IFS= read -r line
+# do
+#     USAGE=$(echo $line | grep Total | awk 'NR<=5' | head >/tmp/memeorydata.txt)
+#     FOLDER=$(echo $line | awk '/^Mem:/{print $NF}')
+#     if [ $USAGE >= $THRESHOLD ]
+#     then
+#         MESSAGE+="$FOLDER Usage of RAM is more than $THRESHOLD,  current usage: $USAGE"
 
-    fi
+#     fi
  
-done <<< "$AVAILABLE_RAM"
+# done <<< "$AVAILABLE_RAM"
 
-echo -e "MESSAGE: $MESSAGE"
-echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
+# echo -e "MESSAGE: $MESSAGE"
+# echo "$MESSAGE" | mail -s "Available ram usage alert" koyisrinath@gmail.com
+# echo -e "Warning, server memory is running low!\n\n
+# Free memory: $free MB"
+
+
+#!/bin/bash 
+subject="Memory Alert"
+from="koyisrinath@gmail.com"
+
+free=$(free -mt | grep Total | awk '{print $4}')
+
+if [[ "$free" -le 100  ]]; then
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | awk 'NR<=5'
+    | head >/tmp/memeorydata.txt
+
+file=/tmp/memeorydata.txt
+
 echo -e "Warning, server memory is running low!\n\n
-Free memory: $free MB"
+    Free memory: $free MB" |
+
+mailx -a "$file" -s "$subject" -r "$from"
+
+fi
+exit 0
