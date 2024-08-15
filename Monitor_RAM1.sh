@@ -1,6 +1,7 @@
 #!/bin/bash
 
-THRESHOLD=90
+# Configuration
+THRESHOLD=1024           # Threshold in MB (e.g., 1024 MB = 1 GB)
 EMAIL_TO="koyisrinath@gmail.com"
 EMAIL_SUBJECT="Alert: Low RAM Memory"
 EMAIL_BODY="/tmp/ram_alert_body.txt"
