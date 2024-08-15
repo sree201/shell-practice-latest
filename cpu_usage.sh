@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Configuration
 CPU_THRESHOLD=80        # CPU usage threshold in percent
 EMAIL_TO="koyisrinath@gmail.com"
 EMAIL_SUBJECT="Alert: System Resource Usage"
