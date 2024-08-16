@@ -33,9 +33,9 @@ do
 done <<< $CPU_THRESHOLD
 
 # Send email if any process exceeds the threshold
-# if [ "$ALERT_FLAG" -eq 1 ]
-# then
-#     echo "Creating alert email content."
+if [ "$ALERT_FLAG" -eq 1 ]
+then
+    echo "Creating alert email content."
 
     # Create email body content
     echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
