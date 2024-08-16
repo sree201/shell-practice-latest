@@ -20,7 +20,8 @@ ALERT_FLAG=0
 echo "$TOP_PROCESSES" 
 while IFS= read -r line
 do
-    if [[ "$line" =~ ^[0-9] ]]; then
+    if [[ "$line" =~ ^[0-9] ]] 
+    then
         PID=$(echo "$line" | awk '{print $1}')
         COMMAND=$(echo "$line" | awk '{print $2}')
         CPU_USAGE=$(echo "$line" | awk '{print $3}')
@@ -34,7 +35,8 @@ do
 done <<< $CPU_THRESHOLD
 
 # Send email if any process exceeds the threshold
-if [ "$ALERT_FLAG" -eq 1 ]; then
+if [ "$ALERT_FLAG" -eq 1 ]
+then
     echo "Creating alert email content."
 
     # Create email body content
