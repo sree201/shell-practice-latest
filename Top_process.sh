@@ -14,7 +14,7 @@ MESSAGE=""
 TOP_PROCESSES=$(ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6)
 
 # Check if the top processes exceed the CPU threshold
-# ALERT_FLAG=0
+ALERT_FLAG=0
 echo "$TOP_PROCESSES" 
 while IFS= read -r line
 do
