@@ -10,7 +10,7 @@ MESSAGE=""
 TOP_PROCESSES=$(ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6)
 
 # Check if the top processes exceed the CPU threshold
-# ALERT_FLAG=0
+ALERT_FLAG=0
 echo "$TOP_PROCESSES" 
 
 while IFS= read -r line
@@ -30,9 +30,9 @@ do
 done <<< $CPU_THRESHOLD
 
 # Send email if any process exceeds the threshold
-# if [ "$ALERT_FLAG" -eq 1 ]
-# then
-#     echo "Creating alert email content."
+if [ "$ALERT_FLAG" -eq 1 ]
+then
+    echo "Creating alert email content."
 
     # Create email body content
     echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
