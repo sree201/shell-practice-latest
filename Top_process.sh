@@ -6,13 +6,16 @@ EMAIL_SUBJECT="Alert: High CPU Usage"
 FOLDER="/tmp/cpu_usage_alert_body.txt"
 MESSAGE=""
 
+# Function to send email
+    echo -e "MESSAGE: $MESSAGE"
+    echo "$MESSAGE" | mail -s  "Available ram usage alert" koyisrinath@gmail.com
+
 # Get the top 5 CPU-consuming processes
 TOP_PROCESSES=$(ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6)
 
 # Check if the top processes exceed the CPU threshold
-ALERT_FLAG=0
-echo "$TOP_PROCESSES" 
-
+# ALERT_FLAG=0
+# echo "$TOP_PROCESSES" 
 while IFS= read -r line
 do
     if [[ "$line" =~ ^[0-9] ]] 
@@ -30,9 +33,9 @@ do
 done <<< $CPU_THRESHOLD
 
 # Send email if any process exceeds the threshold
-if [ "$ALERT_FLAG" -eq 1 ]
-then
-    echo "Creating alert email content."
+# if [ "$ALERT_FLAG" -eq 1 ]
+# then
+#     echo "Creating alert email content."
 
     # Create email body content
     echo "Subject: $EMAIL_SUBJECT" > "$EMAIL_BODY"
