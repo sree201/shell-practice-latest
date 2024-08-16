@@ -13,7 +13,7 @@ send_email() {
 }
 
 # Get the top 5 CPU-consuming processes
-TOP_PROCESSES=$(ps -eo pid,comm,%cpu --sort=-%cpu | head -n 6)
+TOP_PROCESSES=$(ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6)
 
 # Check if the top processes exceed the CPU threshold
 ALERT_FLAG=0
