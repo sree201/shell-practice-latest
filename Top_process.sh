@@ -22,13 +22,8 @@ do
     then
         CPU_USAGE=$(echo "$line" | awk '{print $NR}')
 
-        if [[ "$(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc)" -eq 1 ]]
-            then
-                echo "Process $CPU_THRESHOLD is consuming $CPU_USAGE% CPU, which exceeds the threshold."
-                ALERT_FLAG=1
-        fi
     fi
-done <<< $CPU_THRESHOLD
+done
 
 # Send email if any process exceeds the threshold
 if [ "$ALERT_FLAG" -eq 1 ]
