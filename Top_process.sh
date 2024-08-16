@@ -26,7 +26,7 @@ do
         COMMAND=$(echo "$line" | awk '{print $2}')
         CPU_USAGE=$(echo "$line" | awk '{print $3}')
 
-        if [ "$(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc)" -eq 1 ]
+        if [[ "$(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc)" -eq 1 ]]
             then
                 echo "Process $COMMAND (PID $PID) is consuming $CPU_USAGE% CPU, which exceeds the threshold."
                 ALERT_FLAG=1
