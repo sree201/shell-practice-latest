@@ -2,14 +2,13 @@
 
 # Configuration
 CPU_THRESHOLD=80        # CPU usage threshold in percent
-EMAIL_TO="koyisrinath@gmail.com"
 EMAIL_SUBJECT="Alert: High CPU Usage"
 EMAIL_BODY="/tmp/cpu_usage_alert_body.txt"
 
 # Function to send email
 send_email() {
-    echo "Sending alert email to $EMAIL_TO"
-    mail -s "$EMAIL_SUBJECT" "$EMAIL_TO" < "$EMAIL_BODY"
+    echo "Sending alert email to koyisrinath@gmail.com"
+    mail -s "$EMAIL_SUBJECT" koyisrinath@gmail.com < "$EMAIL_BODY"
 }
 
 # Get the top 5 CPU-consuming processes
