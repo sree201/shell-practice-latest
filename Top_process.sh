@@ -14,17 +14,21 @@ MESSAGE=""
 TOP_PROCESSES=$(ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6)
 
 # Check if the top processes exceed the CPU threshold
-ALERT_FLAG=0
-echo "$TOP_PROCESSES" 
+# ALERT_FLAG=0
+# echo "$TOP_PROCESSES" 
 while IFS= read -r line
 do
     if [[ "$line" =~ ^[0-9] ]] 
     then
         CPU_USAGE=$(echo "$line" | awk '{print $NR}')
 
+        if [[ "$(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc)" -eq 1 ]]
+            then
+                echo "Process $CPU_THRESHOLD is consuming $CPU_USAGE% CPU, which exceeds the threshold."
+                ALERT_FLAG=1
+        fi
     fi
-done
-
+done 
 # Send email if any process exceeds the threshold
 if [ "$ALERT_FLAG" -eq 1 ]
 then
