@@ -2,7 +2,7 @@
 
 # Check for correct number of arguments
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 source_directory destination_directory"
+    echo "Usage: $0 $1 $2"
     exit 1
 fi
 
