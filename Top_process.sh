@@ -20,13 +20,11 @@ while IFS= read -r line
 do
     if [[ "$line" =~ ^[0-9] ]] 
     then
-        PID=$(echo "$line" | awk '{print $1}')
-        COMMAND=$(echo "$line" | awk '{print $2}')
-        CPU_USAGE=$(echo "$line" | awk '{print $3}')
+        CPU_USAGE=$(echo "$line" | awk '{print $NR}')
 
         if [[ "$(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc)" -eq 1 ]]
             then
-                echo "Process $COMMAND (PID $PID) is consuming $CPU_USAGE% CPU, which exceeds the threshold."
+                echo "Process $CPU_THRESHOLD is consuming $CPU_USAGE% CPU, which exceeds the threshold."
                 ALERT_FLAG=1
         fi
     fi
