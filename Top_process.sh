@@ -17,7 +17,9 @@ TOP_PROCESSES=$(ps -eo pid,comm,%cpu --sort=-%cpu | head -n 6)
 
 # Check if the top processes exceed the CPU threshold
 ALERT_FLAG=0
-echo "$TOP_PROCESSES" | while read -r line; do
+echo "$TOP_PROCESSES" 
+while IFS= read -r line
+do
     if [[ "$line" =~ ^[0-9] ]]; then
         PID=$(echo "$line" | awk '{print $1}')
         COMMAND=$(echo "$line" | awk '{print $2}')
@@ -28,7 +30,7 @@ echo "$TOP_PROCESSES" | while read -r line; do
             ALERT_FLAG=1
         fi
     fi
-done
+done <<< $CPU_THRESHOLD
 
 # Send email if any process exceeds the threshold
 if [ "$ALERT_FLAG" -eq 1 ]; then
