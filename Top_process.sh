@@ -36,10 +36,13 @@ then
     echo "Creating alert email content."
 
     # Create email body content
-    echo "Subject: $EMAIL_SUBJECT"
-    echo "Warning: The following processes are consuming more CPU than the threshold of $CPU_THRESHOLD%:"
-    echo "$TOP_PROCESSES"
-    echo "Please check the processes and take appropriate action."
+    echo "Subject: $EMAIL_SUBJECT" > "$FOLDER"
+    echo "" >> "$FOLDER"
+    echo "Warning: The following processes are consuming more CPU than the threshold of $CPU_THRESHOLD%:" >> "$FOLDER"
+    echo "" >> "$FOLDER"
+    echo "$TOP_PROCESSES" >> "$FOLDER"
+    echo "" >> "$FOLDER"
+    echo "Please check the processes and take appropriate action." >> "$FOLDER"
     
     # Send the email
     send_email
