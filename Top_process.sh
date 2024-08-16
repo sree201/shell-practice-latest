@@ -15,7 +15,7 @@ TOP_PROCESSES=$(ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6)
 
 # Check if the top processes exceed the CPU threshold
 ALERT_FLAG=0
-# echo "$TOP_PROCESSES" 
+echo "$TOP_PROCESSES" 
 while IFS= read -r line
 do
     if [[ "$line" =~ ^[0-9] ]] 
@@ -37,11 +37,8 @@ then
 
     # Create email body content
     echo "Subject: $EMAIL_SUBJECT"
-    echo "" >> ""
     echo "Warning: The following processes are consuming more CPU than the threshold of $CPU_THRESHOLD%:"
-    echo "" >> ""
     echo "$TOP_PROCESSES"
-    echo "" >>
     echo "Please check the processes and take appropriate action."
     
     # Send the email
